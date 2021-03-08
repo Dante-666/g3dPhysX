@@ -1,5 +1,16 @@
-#include "PSceneEditorWindow.h"
-#include "PhysicsEntity.h"
+/**
+  \file G3D-app.lib/source/PSceneEditorWindow.h
+
+  G3D Innovation Engine http://casual-effects.com/g3d
+  Copyright 2000-2021, Morgan McGuire
+  All rights reserved
+  Available under the BSD License
+
+  Contributed by : Siddharth J Singh(siddharthjsingh@protonmail.com)
+*/
+
+#include "G3D-app/PSceneEditorWindow.h"
+#include "G3D-app/PhysicsEntity.h"
 
 /**
  Widget created by SceneEditorWindow that sits at the bottom of the event

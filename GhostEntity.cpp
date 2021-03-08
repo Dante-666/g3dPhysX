@@ -1,19 +1,17 @@
-/** Copyright 2020 Blood Eagle Studio
- *
- * You may not use, not distribute and not modify this code
- * under any manifestable possibility and if such a scenario
- * occurs, any changes to the code must be reviewed by the
- * original author of this project.
- *
- *  Author : Siddharth J Singh(dante)
- */
+/**
+  \file G3D-app.lib/source/GhostEntity.cpp
 
-#include "GhostEntity.h"
+  G3D Innovation Engine http://casual-effects.com/g3d
+  Copyright 2000-2021, Morgan McGuire
+  All rights reserved
+  Available under the BSD License
+
+  Contributed by : Siddharth J Singh(siddharthjsingh@protonmail.com)
+*/
+#include "G3D-app/GhostEntity.h"
 #include "G3D-gfx/Profiler.h"
-#include "PhysicsScene.h"
-#include "behavior/BChain.h"
-#include "behavior/PChain.h"
-oooo
+#include "G3D-app/PhysicsScene.h"
+#include "G3D-app/PChain.h"
 
 namespace G3D {
 GhostEntity::GhostEntity() : MarkerEntity(){};

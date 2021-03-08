@@ -1,21 +1,22 @@
-/** Copyright 2020 Blood Eagle Studio
- *
- * You may not use, not distribute and not modify this code
- * under any manifestable possibility and if such a scenario
- * occurs, any changes to the code must be reviewed by the
- * original author of this project.
- *
- *  Author : Siddharth J Singh(dante)
- */
+/**
+  \file G3D-app.lib/source/PhysicsEntity.h
 
-#include "PhysicsEntity.h"
-#include "PhysicsScene.h"
+  G3D Innovation Engine http://casual-effects.com/g3d
+  Copyright 2000-2021, Morgan McGuire
+  All rights reserved
+  Available under the BSD License
+
+  Contributed by : Siddharth J Singh(siddharthjsingh@protonmail.com)
+*/
+
+#include "G3D-app/PhysicsEntity.h"
+#include "G3D-app/PhysicsScene.h"
 
 namespace G3D {
 PhysicsEntity::PhysicsEntity() : VisibleEntity(){};
 
 void PhysicsEntity::onSimulation(SimTime absoluteTime, SimTime deltaTime) {
-    this->apply(this);
+    //TODO: this->apply(this);
 }
 
 shared_ptr<Entity> PhysicsEntity::create(
@@ -69,8 +70,6 @@ void PhysicsEntity::init(AnyTableReader &propertyTable) {
     m_physicsScene = dynamic_cast<PhysicsScene *>(m_scene);
     debugAssertM(m_physicsScene, "Scene is not a PhysicsScene");
 
-    // Add default behaviors
-    this->addBehavior(new FetchPhysicsUpdate<PhysicsEntity>());
 }
 
 Any PhysicsEntity::toAny(const bool forceAll) const {
