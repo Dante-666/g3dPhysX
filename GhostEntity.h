@@ -1,32 +1,23 @@
-/** Copyright 2020 Blood Eagle Studio
- *
- * You may not use, not distribute and not modify this code
- * under any manifestable possibility and if such a scenario
- * occurs, any changes to the code must be reviewed by the
- * original author of this project.
- *
- *  Author : Siddharth J Singh(dante)
- */
+/**
+  \file G3D-app.lib/include/G3D-app/GhostEntity.h
 
+  G3D Innovation Engine http://casual-effects.com/g3d
+  Copyright 2000-2021, Morgan McGuire
+  All rights reserved
+  Available under the BSD License
+
+  Contributed by : Siddharth J Singh(siddharthjsingh@protonmail.com)
+*/
 #pragma once
-
-/** \brief Derived from a MarkerEntity
- * Designed to behave like a trigger sort of entity which can be used to obtain
- * the entities overlapping this bounding box.
- */
 
 #include "G3D-app/ArticulatedModel.h"
 #include "G3D-app/G3D-app.h"
 #include "G3D-base/G3D-base.h"
 #include "G3D-gfx/G3D-gfx.h"
 
-#include "behavior/BChain.h"
-#include "behavior/PChain.h"
+#include "PChain.h"
 
-#include "behavior/AShape.h"
-
-#include "behavior/Attractor.h"
-#include "behavior/ForceField.h"
+#include "AShape.h"
 
 #include <memory>
 
@@ -34,12 +25,19 @@ namespace G3D {
 
 class PhysicsScene;
 
+/** \brief Derived from a MarkerEntity
+    
+    Designed to behave like a trigger sort of entity which can be used to obtain
+    the entities overlapping this bounding box.
+
+    \see G3D::MarkerEntity, G3D::PhysicsScene
+*/
 class GhostEntity : public MarkerEntity, public PropertyChain {
 
-protected:
+  protected:
     PhysicsScene *m_physicsScene;
 
-public:
+  public:
     GhostEntity();
 
     void init(AnyTableReader &propertyTable);

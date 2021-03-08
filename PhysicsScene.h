@@ -1,35 +1,38 @@
-/** Copyright 2020 Blood Eagle Studio
- *
- * You may not use, not distribute and not modify this code
- * under any manifestable possibility and if such a scenario
- * occurs, any changes to the code must be reviewed by the
- * original author of this project.
- *
- *  Author : Siddharth J Singh(dante)
- */
+/**
+  \file G3D-app.lib/include/G3D-app/PhysicsScene.h
 
+  G3D Innovation Engine http://casual-effects.com/g3d
+  Copyright 2000-2021, Morgan McGuire
+  All rights reserved
+  Available under the BSD License
+
+  Contributed by : Siddharth J Singh(siddharthjsingh@protonmail.com)
+*/
 #pragma once
 
 #include "G3D-app/G3D-app.h"
 #include "G3D-base/G3D-base.h"
 #include "G3D-gfx/G3D-gfx.h"
 
-#include "physics/BulletPhysics.h"
-#include "physics/PurePhysics.h"
-
-/** \brief An inherited Scene with support for Physics
- *
- * This is the PhysicsScene which inherits from the G3D::Scene and has extended
- * the former by accomodating for a custom onSimulate method that runs a Physics
- * simulation from an external Physics engine and updates the G3D objects
- * accordingly. Right now, this implementation only supports a single physics
- * world but later, we might need different worlds to run in parallel and on
- * demand.
- */
+#include "G3D-app/PhysXPhysics.h"
+#include "G3D-app/PurePhysics.h"
 
 namespace G3D {
+
+/** \brief An inherited Scene with support for Physics
+ 
+    This is the PhysicsScene which inherits from the G3D::Scene and has extended
+    the former by accomodating for a custom onSimulate method that runs a Physics
+    simulation from an external Physics engine and updates the G3D objects
+    accordingly. 
+
+    Right now, this implementation only supports PhysX for easier integration
+    with %G3D but there is nothing stopping one from implementing another physics
+    world and initializing the scene graph with the custom engine.
+
+    \see G3D::Scene, G3D::PhysicsEntity, G3D::GhostEntity
+*/
 class PhysicsScene : public Scene {
-    // TODO: make the conversion from using concrtete type to abstract type
     shared_ptr<PurePhysics> m_physics;
     shared_ptr<Entity> m_player;
     //shared_ptr<Entity> m_forceField;

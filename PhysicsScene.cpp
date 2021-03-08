@@ -1,18 +1,18 @@
-/** Copyright 2020 Blood Eagle Studio
- *
- * You may not use, not distribute and not modify this code
- * under any manifestable possibility and if such a scenario
- * occurs, any changes to the code must be reviewed by the
- * original author of this project.
- *
- *  Author : Siddharth J Singh(dante)
- */
+/**
+  \file G3D-app.lib/source/PhysicsScene.cpp
 
-#include "PhysicsScene.h"
+  G3D Innovation Engine http://casual-effects.com/g3d
+  Copyright 2000-2021, Morgan McGuire
+  All rights reserved
+  Available under the BSD License
+
+  Contributed by : Siddharth J Singh(siddharthjsingh@protonmail.com)
+*/
+#include "G3D-app/PhysicsScene.h"
 
 namespace G3D {
 PhysicsScene::PhysicsScene(const shared_ptr<AmbientOcclusion> &ao)
-    : Scene(ao), m_physics(std::make_shared<BulletPhysics>()) {}
+    : Scene(ao), m_physics(std::make_shared<PhysXPhysics>()) {}
 
 shared_ptr<PhysicsScene>
 PhysicsScene::create(const shared_ptr<AmbientOcclusion> &ao) {
@@ -38,15 +38,16 @@ Any PhysicsScene::load(const String &sceneName,
 void PhysicsScene::clear() { Scene::clear(); };
 
 void PhysicsScene::onSimulation(SimTime deltaTime) {
-    // TODO: update this to drop 1 ball every second
     if (!isNaN(deltaTime) && !(deltaTime == 0.0)) {
         m_physics->simulate(deltaTime);
     }
 
-    // This method needs to be called so that we can have objects updating
-    // themselves by overriding the onSimulation methods defined within them,
-    // this way we can support both G3D animations and the custom physical
-    // simulations
+    /** The scene graph calls the onSimulation method on attached entities.
+	The methodology was used here to update physical entities as well.
+
+	Seems like a good design choice to me as it removes the responsibility
+	of physical interaction from the PhysicsScene.
+    */
     Scene::onSimulation(deltaTime);
 };
 
@@ -56,7 +57,7 @@ shared_ptr<Entity> PhysicsScene::getPlayer() { return m_player; }
 
 void PhysicsScene::addBoxArray(String name, Vector2 grid, Vector3 position,
                                Vector3 direction) {
-    Scene::LoadOptions options;
+    /*Scene::LoadOptions options;
     for (int j = 0; j < grid.y; j++) {
         for (int i = 0; i < grid.x; i++) {
             Any box(Any::TABLE, "PhysicsEntity");
@@ -75,7 +76,7 @@ void PhysicsScene::addBoxArray(String name, Vector2 grid, Vector3 position,
                                     this, propertyTable, m_modelTable, options);
             insert(entity);
         }
-    }
+    }*/
 }
 
 } // namespace G3D
